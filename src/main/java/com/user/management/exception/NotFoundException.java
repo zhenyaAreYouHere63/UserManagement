@@ -1,4 +1,4 @@
-package com.registration.exception;
+package com.user.management.exception;
 
 public class NotFoundException extends RuntimeException {
 

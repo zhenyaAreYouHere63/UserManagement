@@ -1,6 +1,7 @@
-package com.registration;
+package com.user.management;
 
-import com.registration.exception.NotEnoughYearsException;
+import com.user.management.exception.AgeLimitException;
+import com.user.management.exception.NotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +36,15 @@ public class GlobalExceptionHandler {
         return errorInfos;
     }
 
-    @ExceptionHandler({NotEnoughYearsException.class, NotEnoughYearsException.class})
+    @ExceptionHandler(AgeLimitException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleNotEnoughYearsException(Exception e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<String> handleEntityNotFoundException(Exception e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 }
