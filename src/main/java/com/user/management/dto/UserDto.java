@@ -1,9 +1,14 @@
 package com.user.management.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.user.management.validation.MinAgeValidation;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 
 public record UserDto(
 
@@ -25,6 +30,7 @@ public record UserDto(
                 shape = JsonFormat.Shape.STRING,
                 pattern = "yyyy-MM-dd"
         )
+        @MinAgeValidation
         LocalDate birthday,
 
         @Size(max = 1024, message = "The number of characters in the address has been exceeded")

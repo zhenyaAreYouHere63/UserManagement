@@ -1,11 +1,11 @@
 package com.user.management.repository;
 
-import com.user.management.dao.User;
-import com.user.management.exception.NotFoundException;
-import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.stereotype.Component;
+import com.user.management.dao.User;
+import com.user.management.exception.NotFoundException;
 
 @Component
 public class UserRepositoryImpl implements UserRepository<User> {

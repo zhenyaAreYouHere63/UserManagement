@@ -1,7 +1,6 @@
 package com.user.management.repository;
 
 import com.user.management.dao.User;
-import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
