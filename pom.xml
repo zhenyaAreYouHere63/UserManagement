@@ -11,10 +11,14 @@
     </parent>
 
     <groupId>com.user.management</groupId>
-    <artifactId>userManagement</artifactId>
+    <artifactId>user_management</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>userManagement</name>
-    <description>User management</description>
+    <description>User management with functionality
+    of create a user with the following fields (email, firstname, lastname,
+        birthday, address, phone number), update one/some user fields,
+        update all user fields, delete user and search for users by birthday range.
+    </description>
 
     <properties>
         <java.version>21</java.version>

@@ -90,13 +90,13 @@ class UserControllerTest {
     }
 
     @Test
-    void partialUpdateUser_ShouldUpdateSomeUserFields() throws Exception {
+    void updateUserPartially_ShouldUpdateSomeUserFields() throws Exception {
         String uuid = UUID.randomUUID().toString();
 
         UserDto expectedResponse = new UserDto(UUID.fromString(uuid), "email@i.ua", "firstName",
                 "lastName", null, null, null);
 
-        when(userService.partialUpdateUser(uuid, userUpdateDto)).thenReturn(expectedResponse);
+        when(userService.updateUserPartially(uuid, userUpdateDto)).thenReturn(expectedResponse);
 
         MvcResult response = mockMvc.perform(MockMvcRequestBuilders.patch(USER_URL + "/{id}", uuid)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -110,12 +110,12 @@ class UserControllerTest {
     }
 
     @Test
-    void partialUpdateUser_shouldThrowExceptionWhenUserLessThanAllowedNumberYears() throws Exception {
+    void updateUserPartially_shouldThrowExceptionWhenUserLessThanAllowedNumberYears() throws Exception {
         String uuid = UUID.randomUUID().toString();
         userUpdateDto = new UserUpdateDto(UUID.fromString(uuid), null, "testFirstName",
                 "testLastName", LocalDate.parse("2019-04-04"), null, null);
 
-        when(userService.partialUpdateUser(uuid, userUpdateDto)).thenReturn(null);
+        when(userService.updateUserPartially(uuid, userUpdateDto)).thenReturn(null);
 
         mockMvc.perform(MockMvcRequestBuilders.patch(USER_URL + "/{id}", uuid)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -126,27 +126,27 @@ class UserControllerTest {
     }
 
     @Test
-    void partialUpdateUser_shouldThrowException400WhenUuidSomeText() throws Exception {
+    void updateUserPartially_shouldThrowException400WhenUuidSomeText() throws Exception {
         String uuid = "text";
         UserUpdateDto userUpdateDto = new UserUpdateDto(UUID.fromString(userId), "email@i.ua", "firstName",
                 "lastName", LocalDate.parse("2001-05-05"), null, null);
 
-        when(userService.partialUpdateUser(uuid, userUpdateDto)).thenReturn(null);
+        when(userService.updateUserPartially(uuid, userUpdateDto)).thenReturn(null);
 
         mockMvc.perform(MockMvcRequestBuilders.patch(USER_URL + "/{id}", uuid)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$[0].title").value("Validation exception"))
-                .andExpect(jsonPath("$[0].error").value("[partialUpdateUser.id: 'must be a valid UUID']"));
+                .andExpect(jsonPath("$[0].error").value("[updateUserPartially.id: 'must be a valid UUID']"));
     }
 
     @Test
-    void partialUpdateUser_shouldThrowException400WhenUuidIncorrect() throws Exception {
+    void updateUserPartially_shouldThrowException400WhenUuidIncorrect() throws Exception {
         UserUpdateDto userUpdateDto = new UserUpdateDto(UUID.fromString(userId), "email@i.ua", "firstName",
                 "lastName", LocalDate.parse("2001-01-01"), null, null);
 
-        when(userService.partialUpdateUser(userId + "s", userUpdateDto)).thenReturn(null);
+        when(userService.updateUserPartially(userId + "s", userUpdateDto)).thenReturn(null);
 
         mockMvc.perform(MockMvcRequestBuilders.patch(USER_URL + "/{id}", userId + "s")
                         .contentType(MediaType.APPLICATION_JSON)

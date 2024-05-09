@@ -64,13 +64,13 @@ public class UserServiceTest {
     }
 
     @Test
-    void partialUpdateUser_shouldUpdateSomeUserFields() {
+    void updateUserPartially_shouldUpdateSomeUserFields() {
         UserDto expectedResponse =  new UserDto(user.getUuid(), "newEmail@gmail.com",
                 "testFirstName", "testLastName", LocalDate.parse("2000-10-10"), null, null);
 
         when(userRepository.findUserByUuid(userId)).thenReturn(user);
 
-        UserDto actualResponse = userService.partialUpdateUser(userId.toString(), userUpdateDto);
+        UserDto actualResponse = userService.updateUserPartially(userId.toString(), userUpdateDto);
 
         assertThat(actualResponse).isEqualTo(expectedResponse);
     }

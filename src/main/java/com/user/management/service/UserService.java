@@ -10,7 +10,7 @@ public interface UserService {
 
     UUID registerUser(UserDto userDto);
 
-    UserDto partialUpdateUser(String id, UserUpdateDto userDto);
+    UserDto updateUserPartially(String id, UserUpdateDto userDto);
 
     UserDto updateUserAllFields(String id, UserDto userDto);
 

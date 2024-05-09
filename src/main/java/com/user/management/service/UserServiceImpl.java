@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto partialUpdateUser(String id, UserUpdateDto userDto) {
+    public UserDto updateUserPartially(String id, UserUpdateDto userDto) {
         User existingUser = userRepository.findUserByUuid(UUID.fromString(id));
 
         Optional.ofNullable(userDto.email()).ifPresent(existingUser::setEmail);

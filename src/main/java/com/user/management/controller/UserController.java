@@ -38,9 +38,9 @@ public class UserController {
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public UserDto partialUpdateUser(@PathVariable @UUID String id,
-                                  @RequestBody @Valid UserUpdateDto userDto) {
-        return userService.partialUpdateUser(id, userDto);
+    public UserDto updateUserPartially(@PathVariable @UUID String id,
+                                       @RequestBody @Valid UserUpdateDto userDto) {
+        return userService.updateUserPartially(id, userDto);
     }
 
     @PutMapping("/{id}")
