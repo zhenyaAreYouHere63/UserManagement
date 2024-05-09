@@ -153,7 +153,7 @@ class UserControllerTest {
                         .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$[0].title").value("Validation exception"))
-                .andExpect(jsonPath("$[0].error").value("[partialUpdateUser.id: 'must be a valid UUID']"));
+                .andExpect(jsonPath("$[0].error").value("[updateUserPartially.id: 'must be a valid UUID']"));
     }
 
     @Test
